@@ -1,38 +1,156 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #486c97;
+  padding: 8px 12px;
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar__logo {
+  font-size: 24px;
+}
+
+.navbar__menu {
+  display: flex;
+  list-style: none;
+}
+
+.navbar__menu li {
+  padding: 8px 12px;
+}
+
+.navbar__menu li:hover {
+  background-color: rgb(27, 72, 139);
+  border-radius: 4px;
+}
+
+.navbar__toggleBtn {
+  display: none;
+  position: absolute;
+  right: 24px;
+  top: 12px;
+  font-size: 20px;
+  text-decoration: none;
+  background-color: #486c97;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar__menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .navbar__menu li {
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .navbar__user {
+    position: absolute;
+    top: 12px;
+    right: 64px;
+  }
+
+  .navbar__toggleBtn {
+    display: block;
+  }
+
+  .navbar__menu.active {
+    display: flex;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* join */
+.join-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #486c97;
+  height: 100vh;
+}
+
+.join-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 8px 12px;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  border-radius: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.join-container button {
+  padding: 8px 12px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.join-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.join-input input {
+  padding: 8px 12px;
+  margin-bottom: 20px;
+}
+
+/* login */
+.login-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #486c97;
+  height: 100vh;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.login-container button {
+  padding: 8px 12px;
+}
+
+.login-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input input {
+  padding: 8px 12px;
+  margin-bottom: 20px;
 }
