@@ -27,17 +27,17 @@ app.use(
   })
 );
 
-db.add("article_project", {
+db.add("my_project", {
   host: "127.0.0.1",
   user: "root",
   password: "",
-  database: "article_project",
+  database: "my_project",
   port: 3306,
 });
 
 function 디비실행(query) {
   return new Promise(function (resolve, reject) {
-    db.getConnection("article_project", function (error, connection) {
+    db.getConnection("my_project", function (error, connection) {
       if (error) {
         console.log("디비 연결 오류", error);
         reject(true);

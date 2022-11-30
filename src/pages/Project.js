@@ -1,7 +1,7 @@
 import React from "react";
 import { StoreContext } from "../App";
 
-function Main() {
+function Project() {
   const { loginUser } = React.useContext(StoreContext);
   const menu = document.querySelector(".navbar__menu");
 
@@ -47,10 +47,10 @@ function Main() {
                   <a href="/">전체</a>
                 </li>
                 <li>
-                  <a href="/">프로그래머스</a>
+                  <a href="/">React</a>
                 </li>
                 <li>
-                  <a href="/">백준</a>
+                  <a href="/">JavaScript</a>
                 </li>
               </ul>
             </div>
@@ -66,4 +66,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Project;

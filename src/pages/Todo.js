@@ -1,7 +1,7 @@
 import React from "react";
 import { StoreContext } from "../App";
 
-function Main() {
+function Todo() {
   const { loginUser } = React.useContext(StoreContext);
   const menu = document.querySelector(".navbar__menu");
 
@@ -41,22 +41,7 @@ function Main() {
         <div className="project-container">
           <div className="tagbar">
             <div className="tag-list">
-              <p>태그 목록</p>
-              <ul>
-                <li>
-                  <a href="/">전체</a>
-                </li>
-                <li>
-                  <a href="/">프로그래머스</a>
-                </li>
-                <li>
-                  <a href="/">백준</a>
-                </li>
-              </ul>
-            </div>
-            <div className="serch">
-              <input name="keyword" placeholder="키워드 검색"></input>
-              <button>Search</button>
+              <p>To Do List</p>
             </div>
           </div>
           <div className="content"></div>
@@ -66,4 +51,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Todo;
