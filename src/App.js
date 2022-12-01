@@ -4,8 +4,7 @@ import "./App.css";
 import Login from "./pages/Login";
 import Join from "./pages/Join";
 import Main from "./pages/Main";
-import Project from "./pages/Project";
-import Todo from "./pages/Todo";
+import Algorithm from "./pages/Algorithm";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 
@@ -36,8 +35,7 @@ function App() {
     >
       <Routes>
         <Route exact path="/" element={<Main />} />
-        <Route exact path="/project" element={<Project />} />
-        <Route exact path="/todo" element={<Todo />} />
+        <Route exact path="/algorithm" element={<Algorithm />} />
         <Route exact path="/join" element={<Join />} />
         <Route exact path="/login" element={<Login />} />
       </Routes>

@@ -140,6 +140,55 @@ app.post("/join", async (req, res) => {
   res.send(result);
 });
 
+app.get("/algorithm", async (req, res) => {
+  const { loginUser } = req.session;
+  const query = `SELECT title, tag, level FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}'`;
+
+  const algorithm = await 디비실행(query);
+  res.send(algorithm);
+});
+
+app.post("/algorithm", async (req, res) => {
+  const { title, tag, link, level, content } = req.body;
+  const { loginUser } = req.session;
+
+  const result = {
+    code: "success",
+    message: "알고리즘 문제 생성 완료",
+  };
+
+  if (title === "") {
+    result.code = "fail";
+    result.message = "제목을 입력해주세요";
+  }
+
+  if (tag === "") {
+    result.code = "fail";
+    result.message = "태그를 입력해주세요";
+  }
+
+  if (link === "") {
+    result.code = "fail";
+    result.message = "문제 링크 입력해주세요";
+  }
+
+  if (level === "") {
+    result.code = "fail";
+    result.message = "난이도를 설정해주세요";
+  }
+
+  if (content === "") {
+    result.code = "fail";
+    result.message = "내용을 입력해주세요";
+  }
+
+  await 디비실행(
+    `INSERT INTO algorithm(title,tag,link,level,content,user_seq) VALUES('${title}','${tag}','${link}','${level}','${content}','${loginUser.seq}')`
+  );
+
+  res.send(result);
+});
+
 app.listen(port, () => {
   console.log("서버가 실행되었습니다");
 });
