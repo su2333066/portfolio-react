@@ -1,13 +1,19 @@
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 axios.defaults.withCredentials = true;
 function Login() {
+  const navigation = useNavigate();
   const [data, setData] = React.useState({});
 
   const 데이터변경 = (event) => {
     const cloneData = { ...data };
     cloneData[event.target.name] = event.target.value;
     setData(cloneData);
+  };
+
+  const 회원가입하기 = () => {
+    navigation("/join");
   };
 
   const 로그인하기 = async () => {
@@ -45,6 +51,9 @@ function Login() {
 
         <button type="button" onClick={로그인하기}>
           로그인
+        </button>
+        <button type="button" onClick={회원가입하기}>
+          회원가입
         </button>
       </div>
     </div>

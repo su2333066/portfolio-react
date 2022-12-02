@@ -26,6 +26,10 @@ function Main() {
     });
   };
 
+  const 로그인페이지로이동 = () => {
+    navigation("/login");
+  };
+
   React.useEffect(() => {
     알고리즘목록가져오기();
   }, []);
@@ -41,9 +45,17 @@ function Main() {
             <a href="/">Algorithm</a>
           </li>
         </ul>
-        <a href="/" className="navbar__user">
-          <i class="fa-solid fa-user">&nbsp;{loginUser.nickname} 님&nbsp;</i>
-        </a>
+
+        {loginUser.length !== 0 ? (
+          <a href="/" className="navbar__user">
+            <i class="fa-solid fa-user">&nbsp;{loginUser.nickname} 님&nbsp;</i>
+          </a>
+        ) : (
+          <button onClick={로그인페이지로이동} className="login-btn">
+            로그인
+          </button>
+        )}
+
         <button onClick={메뉴보이기} className="navbar__toggleBtn">
           <i class="fa-solid fa-bars"></i>
         </button>
