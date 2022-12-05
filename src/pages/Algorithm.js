@@ -1,8 +1,20 @@
 import axios from "axios";
 import React from "react";
+
+import { Editor } from "@toast-ui/react-editor";
+import "@toast-ui/editor/dist/toastui-editor.css";
+
 axios.defaults.withCredentials = true;
+
 function Algorithm() {
-  const [data, setData] = React.useState({});
+  const [data, setData] = React.useState({
+    title: "",
+    tag: "",
+    link: "",
+    level: 1,
+    content: "",
+  });
+  const editorRef = React.useRef("");
 
   const 데이터변경 = (event) => {
     const cloneData = { ...data };
@@ -26,6 +38,15 @@ function Algorithm() {
     });
   };
 
+  const 에디터내용가져오자 = () => {
+    const editorContent = editorRef.current.getInstance().getHTML();
+    const cloneData = { ...data };
+    cloneData.content = editorContent;
+    setData(cloneData);
+  };
+
+  console.log(data);
+
   return (
     <div className="">
       <div className="">
@@ -46,10 +67,16 @@ function Algorithm() {
             onChange={데이터변경}
           />
           <input name="level" placeholder="난이도 설정" onChange={데이터변경} />
-          <input
+
+          <Editor
+            ref={editorRef}
+            previewStyle="vertical"
+            height="600px"
+            theme="dark"
             name="content"
-            placeholder="내용을 입력해주세요"
-            onChange={데이터변경}
+            initialEditType="wysiwyg"
+            useCommandShortcut={false}
+            onChange={에디터내용가져오자}
           />
         </div>
 

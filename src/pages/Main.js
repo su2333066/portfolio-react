@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { StoreContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import { Viewer } from "@toast-ui/react-editor";
+import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 
 function Main() {
   const { loginUser } = React.useContext(StoreContext);
@@ -18,8 +20,8 @@ function Main() {
     navigation("/algorithm");
   };
 
-  const 알고리즘목록가져오기 = () => {
-    axios({
+  const 알고리즘목록가져오기 = async () => {
+    await axios({
       url: "http://localhost:4000/algorithm",
     }).then((response) => {
       setAlgorithm(response.data);
