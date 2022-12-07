@@ -2,8 +2,6 @@ import React from "react";
 import axios from "axios";
 import { StoreContext } from "../App";
 import { useNavigate } from "react-router-dom";
-import { Viewer } from "@toast-ui/react-editor";
-import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 
 function Main() {
   const { loginUser } = React.useContext(StoreContext);
@@ -33,14 +31,14 @@ function Main() {
   };
 
   React.useEffect(() => {
-    알고리즘목록가져오기();
-  }, []);
+    if (Object.keys(loginUser).length !== 0) 알고리즘목록가져오기();
+  }, [loginUser]);
 
   return (
     <div>
       <nav className="navbar">
         <a href="/" className="navbar__logo">
-          <i class="fa-solid fa-diagram-project"></i>
+          <i className="fa-solid fa-diagram-project"></i>
         </a>
         <ul className="navbar__menu">
           <li>
@@ -48,9 +46,11 @@ function Main() {
           </li>
         </ul>
 
-        {loginUser.length !== 0 ? (
+        {Object.keys(loginUser).length !== 0 ? (
           <a href="/" className="navbar__user">
-            <i class="fa-solid fa-user">&nbsp;{loginUser.nickname} 님&nbsp;</i>
+            <i className="fa-solid fa-user">
+              &nbsp;{loginUser.nickname} 님&nbsp;
+            </i>
           </a>
         ) : (
           <button onClick={로그인페이지로이동} className="login-btn">
@@ -59,7 +59,7 @@ function Main() {
         )}
 
         <button onClick={메뉴보이기} className="navbar__toggleBtn">
-          <i class="fa-solid fa-bars"></i>
+          <i className="fa-solid fa-bars"></i>
         </button>
       </nav>
 
