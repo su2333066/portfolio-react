@@ -265,11 +265,43 @@
 }
 
 .content .algorithm-box {
-  width: 25%;
+  width: 21%;
   height: 150px;
   padding: 2%;
   margin: 2%;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.algorithm-box .level {
+  width: 100%;
+  font-weight: bold;
+  color: skyblue;
+  text-align: right;
+}
+
+.algorithm-box .title {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 8px 12px;
+}
+
+.algorithm-box .tag {
+  padding: 8px 12px;
+}
+
+.algorithm-box .tag span {
+  margin-right: 8px;
+  background-color: gainsboro;
+  color: rgb(24, 150, 150);
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 4px;
+  font-size: 12px;
 }
 
 /* algorithm */
@@ -307,6 +339,16 @@
   margin-left: 10px;
 }
 
+.algorithm-container .tag span {
+  margin-left: 10px;
+  background-color: gainsboro;
+  color: rgb(24, 150, 150);
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 4px;
+  font-size: 12px;
+}
+
 .algorithm-container .link {
   display: flex;
   padding: 8px 12px;
@@ -324,6 +366,8 @@
 
 .algorithm-container .level button {
   margin-left: 10px;
+  color: rgb(24, 150, 150);
+  font-weight: bold;
 }
 
 .algorithm-container .save-Btn {

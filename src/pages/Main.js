@@ -92,11 +92,19 @@ function Main() {
             {algorithm.length > 0 &&
               algorithm.map((item, index) => {
                 return (
-                  <div key={index} className="algorithm-box">
-                    <div>{item.title}</div>
-                    <div>{item.level}</div>
-                    <div>{item.tag}</div>
-                  </div>
+                  <button key={index} className="algorithm-box">
+                    <div className="level">{`Lv.${item.level}`}</div>
+                    <div className="title">{item.title}</div>
+                    <div className="tag">
+                      {item.tag.length > 1 ? (
+                        item.tag.split(",").map((tag, index) => {
+                          return <span key={index}>{tag}</span>;
+                        })
+                      ) : (
+                        <span key={index}>{item.tag}</span>
+                      )}
+                    </div>
+                  </button>
                 );
               })}
           </div>

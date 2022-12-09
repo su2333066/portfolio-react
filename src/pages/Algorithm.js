@@ -9,19 +9,13 @@ axios.defaults.withCredentials = true;
 function Algorithm() {
   const [data, setData] = React.useState({
     title: "",
-    tag: "",
+    tag: [],
     link: "",
     level: 1,
     content: "",
   });
 
   const editorRef = React.useRef("");
-
-  const 데이터변경 = (event) => {
-    const cloneData = { ...data };
-    cloneData[event.target.name] = event.target.value;
-    setData(cloneData);
-  };
 
   const 알고리즘생성하기 = async () => {
     await axios({
@@ -46,20 +40,39 @@ function Algorithm() {
     setData(cloneData);
   };
 
+  const 데이터변경 = (event) => {
+    const cloneData = { ...data };
+    cloneData[event.target.name] = event.target.value;
+    setData(cloneData);
+  };
+
+  const 태그추가 = (event) => {
+    if (event.key === "Enter") {
+      const cloneData = { ...data };
+      cloneData.tag.push(event.target.value);
+      setData(cloneData);
+      event.target.value = "";
+    }
+  };
+
   return (
     <div className="algorithm-body">
       <div className="algorithm-container">
         <div className="title">
           <p>제목 :</p>
-          <input name="title" onChange={데이터변경} />
+          <input name="title" placeholder="Input Title" onChange={데이터변경} />
         </div>
         <div className="tag">
           <p>태그 :</p>
-          <input name="tag" onChange={데이터변경} />
+          <input name="tag" placeholder="Press Enter" onKeyPress={태그추가} />
+          {data.tag.length > 0 &&
+            data.tag.map((tag, index) => {
+              return <span key={index}>{tag}</span>;
+            })}
         </div>
         <div className="link">
           <p>링크 :</p>
-          <input name="link" onChange={데이터변경} />
+          <input name="link" placeholder="Input Link" onChange={데이터변경} />
         </div>
         <div className="level">
           <p>레벨 :</p>
