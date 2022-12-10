@@ -64,7 +64,7 @@ function Algorithm() {
         </div>
         <div className="tag">
           <p>태그 :</p>
-          <input name="tag" placeholder="Press Enter" onKeyPress={태그추가} />
+          <input name="tag" placeholder="Press Enter" onKeyUp={태그추가} />
           {data.tag.length > 0 &&
             data.tag.map((tag, index) => {
               return <span key={index}>{tag}</span>;

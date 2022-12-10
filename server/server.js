@@ -140,6 +140,22 @@ app.post("/join", async (req, res) => {
   res.send(result);
 });
 
+app.get("/algorithm/tag", async (req, res) => {
+  const { loginUser } = req.session;
+  const { tagName } = req.query;
+
+  const query = `SELECT title, tag, level FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}'`;
+  const tagQuery = `SELECT title, tag, level FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}' AND algorithm.tag IN('${tagName}')`;
+
+  if (tagName === "전체") {
+    const algorithm = await 디비실행(query);
+    res.send(algorithm);
+  } else {
+    const algorithm = await 디비실행(tagQuery);
+    res.send(algorithm);
+  }
+});
+
 app.get("/algorithm", async (req, res) => {
   const { loginUser } = req.session;
   const query = `SELECT title, tag, level FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}'`;

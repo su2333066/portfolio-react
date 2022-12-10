@@ -8,6 +8,7 @@ function Main() {
   const navigation = useNavigate();
 
   const [algorithm, setAlgorithm] = React.useState([]);
+  const [tagList, setTagList] = React.useState([]);
 
   const 메뉴보이기 = () => {
     const menu = document.querySelector(".navbar__menu");
@@ -21,6 +22,16 @@ function Main() {
   const 알고리즘목록가져오기 = async () => {
     await axios({
       url: "http://localhost:4000/algorithm",
+    }).then((response) => {
+      setAlgorithm(response.data);
+    });
+  };
+
+  const 태그목록가져오기 = async (event) => {
+    const tagName = event.target.name;
+    await axios({
+      url: "http://localhost:4000/algorithm/tag",
+      params: { tagName },
     }).then((response) => {
       setAlgorithm(response.data);
     });
@@ -70,13 +81,19 @@ function Main() {
               <p>태그 목록</p>
               <ul>
                 <li>
-                  <a href="/">전체</a>
+                  <button onClick={태그목록가져오기} name="전체">
+                    전체
+                  </button>
                 </li>
                 <li>
-                  <a href="/">프로그래머스</a>
+                  <button onClick={태그목록가져오기} name="프로그래머스">
+                    프로그래머스
+                  </button>
                 </li>
                 <li>
-                  <a href="/">백준</a>
+                  <button onClick={태그목록가져오기} name="백준">
+                    백준
+                  </button>
                 </li>
               </ul>
             </div>
