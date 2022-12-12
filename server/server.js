@@ -140,12 +140,22 @@ app.post("/join", async (req, res) => {
   res.send(result);
 });
 
-app.get("/algorithm/tag", async (req, res) => {
+app.get("/detail", async (req, res) => {
+  const { loginUser } = req.session;
+  const { algorithmSeq } = req.query;
+
+  const query = `SELECT * FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}' AND algorithm.seq = '${algorithmSeq}'`;
+
+  const detail = await 디비실행(query);
+  res.send(detail);
+});
+
+app.get("/algorithm/:tagName", async (req, res) => {
   const { loginUser } = req.session;
   const { tagName } = req.query;
 
-  const query = `SELECT title, tag, level FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}'`;
-  const tagQuery = `SELECT title, tag, level FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}' AND algorithm.tag IN('${tagName}')`;
+  const query = `SELECT * FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}'`;
+  const tagQuery = `SELECT * FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}' AND algorithm.tag LIKE '%${tagName}%'`;
 
   if (tagName === "전체") {
     const algorithm = await 디비실행(query);
@@ -156,9 +166,19 @@ app.get("/algorithm/tag", async (req, res) => {
   }
 });
 
+app.get("/search", async (req, res) => {
+  const { loginUser } = req.session;
+  const { search } = req.query;
+
+  const query = `SELECT * FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}' AND algorithm.title LIKE '%${search}%'`;
+
+  const algorithm = await 디비실행(query);
+  res.send(algorithm);
+});
+
 app.get("/algorithm", async (req, res) => {
   const { loginUser } = req.session;
-  const query = `SELECT title, tag, level FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}'`;
+  const query = `SELECT * FROM ALGORITHM WHERE algorithm.user_seq = '${loginUser.seq}'`;
 
   const algorithm = await 디비실행(query);
   res.send(algorithm);

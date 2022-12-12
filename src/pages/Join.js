@@ -52,9 +52,11 @@ function Join() {
             onChange={데이터변경}
           />
         </div>
-        <button type="button" onClick={가입하기}>
-          가입
-        </button>
+        <div className="join-btn">
+          <button type="button" onClick={가입하기}>
+            회원가입
+          </button>
+        </div>
       </div>
     </div>
   );

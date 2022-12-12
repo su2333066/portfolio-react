@@ -8,7 +8,7 @@ function Main() {
   const navigation = useNavigate();
 
   const [algorithm, setAlgorithm] = React.useState([]);
-  const [tagList, setTagList] = React.useState([]);
+  const [search, setSearch] = React.useState("");
 
   const 메뉴보이기 = () => {
     const menu = document.querySelector(".navbar__menu");
@@ -30,8 +30,21 @@ function Main() {
   const 태그목록가져오기 = async (event) => {
     const tagName = event.target.name;
     await axios({
-      url: "http://localhost:4000/algorithm/tag",
+      url: `http://localhost:4000/algorithm/:${tagName}`,
       params: { tagName },
+    }).then((response) => {
+      setAlgorithm(response.data);
+    });
+  };
+
+  const 데이터변경 = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const 알고리즘검색 = async () => {
+    await axios({
+      url: "http://localhost:4000/search",
+      params: { search },
     }).then((response) => {
       setAlgorithm(response.data);
     });
@@ -98,8 +111,14 @@ function Main() {
               </ul>
             </div>
             <div className="serch-add">
-              <input name="keyword" placeholder="키워드 검색"></input>
-              <button className="serch-btn">검색</button>
+              <input
+                name="keyword"
+                placeholder="키워드 검색"
+                onChange={데이터변경}
+              ></input>
+              <button onClick={알고리즘검색} className="serch-btn">
+                검색
+              </button>
               <button className="add-btn" onClick={알고리즘생성}>
                 추가
               </button>
@@ -109,17 +128,19 @@ function Main() {
             {algorithm.length > 0 &&
               algorithm.map((item, index) => {
                 return (
-                  <button key={index} className="algorithm-box">
+                  <button
+                    onClick={() => {
+                      navigation(`detail/${item.seq}`);
+                    }}
+                    key={index}
+                    className="algorithm-box"
+                  >
                     <div className="level">{`Lv.${item.level}`}</div>
                     <div className="title">{item.title}</div>
                     <div className="tag">
-                      {item.tag.length > 1 ? (
-                        item.tag.split(",").map((tag, index) => {
-                          return <span key={index}>{tag}</span>;
-                        })
-                      ) : (
-                        <span key={index}>{item.tag}</span>
-                      )}
+                      {item.tag.split(",").map((tag, index) => {
+                        return <span key={index}>{tag}</span>;
+                      })}
                     </div>
                   </button>
                 );

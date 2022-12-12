@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Join from "./pages/Join";
 import Main from "./pages/Main";
 import Algorithm from "./pages/Algorithm";
+import Detail from "./pages/Detail";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 
@@ -36,6 +37,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Main />} />
         <Route exact path="/algorithm" element={<Algorithm />} />
+        <Route exact path="/detail/:algorithmSeq" element={<Detail />} />
         <Route exact path="/join" element={<Join />} />
         <Route exact path="/login" element={<Login />} />
       </Routes>

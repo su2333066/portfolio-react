@@ -48,13 +48,14 @@ function Login() {
             onChange={데이터변경}
           />
         </div>
-
-        <button type="button" onClick={로그인하기}>
-          로그인
-        </button>
-        <button type="button" onClick={회원가입하기}>
-          회원가입
-        </button>
+        <div className="login-btn">
+          <button type="button" onClick={로그인하기}>
+            로그인
+          </button>
+          <button type="button" onClick={회원가입하기}>
+            회원가입
+          </button>
+        </div>
       </div>
     </div>
   );
