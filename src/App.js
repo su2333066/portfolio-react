@@ -15,6 +15,7 @@ export const StoreContext = React.createContext({});
 
 function App() {
   const [loginUser, setLoginUser] = React.useState({});
+  const [loading, setLoading] = React.useState(true);
 
   const 자동로그인 = async () => {
     await axios({
@@ -22,11 +23,16 @@ function App() {
       method: "POST",
     }).then((response) => {
       setLoginUser(response.data);
+      setLoading(false);
     });
   };
   React.useEffect(() => {
     자동로그인();
   }, []);
+
+  if (loading === true) {
+    return <div>로딩중..</div>;
+  }
 
   return (
     <StoreContext.Provider

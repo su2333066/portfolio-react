@@ -136,7 +136,9 @@ function Main() {
                     className="algorithm-box"
                   >
                     <div className="level">{`Lv.${item.level}`}</div>
-                    <div className="title">{item.title}</div>
+                    <div className="title">
+                      <p>{item.title}</p>
+                    </div>
                     <div className="tag">
                       {item.tag.split(",").map((tag, index) => {
                         return <span key={index}>{tag}</span>;

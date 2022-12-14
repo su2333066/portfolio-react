@@ -317,9 +317,17 @@
 }
 
 .algorithm-box .title {
-  font-size: 20px;
-  font-weight: bold;
   padding: 8px 12px;
+}
+
+.algorithm-box .title > p {
+  font-size: 15px;
+  font-weight: bold;
+  width: 110px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
 }
 
 .algorithm-box .tag {
@@ -347,6 +355,7 @@
 
 .algorithm-container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   background-color: white;
   padding: 20px;
@@ -356,19 +365,24 @@
 .algorithm-container .title {
   display: flex;
   padding: 8px 12px;
+  margin-left: 0;
 }
 
 .algorithm-container .title input {
   margin-left: 10px;
+  border: 0;
+  outline: 0;
 }
 
 .algorithm-container .tag {
   display: flex;
-  padding: 8px 12px;
+  padding: 10px 14px;
 }
 
 .algorithm-container .tag input {
   margin-left: 10px;
+  border: 0;
+  outline: 0;
 }
 
 .algorithm-container .tag span {
@@ -381,6 +395,14 @@
   font-size: 12px;
 }
 
+.algorithm-container .tag button {
+  border: 0;
+  outline: 0;
+  font-size: 12px;
+  background-color: gainsboro;
+  cursor: pointer;
+}
+
 .algorithm-container .link {
   display: flex;
   padding: 8px 12px;
@@ -388,6 +410,8 @@
 
 .algorithm-container .link input {
   margin-left: 10px;
+  border: 0;
+  outline: 0;
 }
 
 .algorithm-container .level {
@@ -398,11 +422,28 @@
 
 .algorithm-container .level button {
   margin-left: 10px;
-  color: rgb(24, 150, 150);
+  background-color: gainsboro;
+  padding: 4px 8px;
+  border: 0;
+  outline: 0;
+  font-size: 12px;
+  border-radius: 20px;
   font-weight: bold;
+}
+
+.algorithm-container Editor {
+  overflow: scroll;
+}
+
+.algorithm-container CodeMirror {
+  overflow: scroll;
 }
 
 .algorithm-container .save-Btn {
   margin-top: 10px;
   padding: 8px 12px;
+}
+
+.button-active {
+  color: rgb(24, 150, 150);
 }
